@@ -1,0 +1,10 @@
+library(ggplot2)
+data <- read.table(file="geno_0.2_LD.txt",header = T)
+
+
+
+ggplot(data =data, aes(x=PC1,y=PC2,color=Group))+
+  geom_point()+xlab("pc1(25%)")+ylab("pc2(25%)")+
+  theme_bw() +
+  scale_color_manual(values = c("#037ef3","#f85a40","#00c16e","#7552cc","#0cb9c1","#f48924","#ffc845","#52565e","#caccd1","#d20962","#b4a996","#0389ff","#7fbb00","#efdf00"))+
+  theme(panel.border=element_blank(),panel.grid.major=element_blank(),panel.grid.minor=element_blank(),axis.line= element_line(colour = "black"))

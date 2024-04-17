@@ -5,3 +5,8 @@ cat genome.fa.size|awk '{print $1 "\t" $2 "\t" $2/1000000*20 }' > tmp_grid  ###�
 less tmp_grid |awk '{print $1 "," $3}' > chr_grid
 step3:run the SweeD software,-grid参数从chr_grid这个文件的第二列
 sweed-4.0.0/SweeD -name chr1.50kb  -input clade1.chr*.vcf -grid 805  -minsnps 200  -maf 0.05
+##draw the plot by R script
+chr1 <- read.table(file="chr1.SweeD_Report.chr1.50kb.txt",sep = "\t", header = T)
+chr1$name <- chr1$Position/1000
+
+plot(chr1$Position,chr1$Likelihood)

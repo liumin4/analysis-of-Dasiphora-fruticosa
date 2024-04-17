@@ -1,0 +1,3 @@
+the script for GO enrichment analysis
+
+EnrichPipeline.pl --cls GO --GOdata  EnrichGO/all.RData --supplyF gene.list --outDir  result --P_Adjust_Method fdr --TestMethod  FisherChiSquare -Rpath

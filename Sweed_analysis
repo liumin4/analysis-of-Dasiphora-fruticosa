@@ -1,0 +1,7 @@
+step1:get the vcf from each clades
+/share/app/vcftools-0.1.13/bin/vcftools --vcf clade1.all.vcf --recode --recode-INFO-all --chr chr* --stdout > clade1.chr*.vcf
+step2:split the genome 每Mb分割为20个（50kbp一个网格），滑窗为50kb
+cat genome.fa.size|awk '{print $1 "\t" $2 "\t" $2/1000000*20 }' > tmp_grid  ###每Mb分割为20个（50kbp一个网格），滑窗为50kb
+less tmp_grid |awk '{print $1 "," $3}' > chr_grid
+step3:run the SweeD software,-grid参数从chr_grid这个文件的第二列
+sweed-4.0.0/SweeD -name chr1.50kb  -input clade1.chr*.vcf -grid 805  -minsnps 200  -maf 0.05
